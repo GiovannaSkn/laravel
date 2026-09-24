@@ -1,3 +1,63 @@
+
+
+Route::get('/aluno/{id}', function ($id) {
+ return "Aluno: " . $id;
+});
+Acessando /aluno/10
+
+A regra geral é:
+PHP
+Route::get('/caminho/{parametro}', function ($parametro) {
+ // código
+});
+O nome dentro de {} deve corresponder ao parâmetro da função.
+
+Route::get('/aluno/{id}/disciplina/{materia}', function ($id, $materia) {
+ return "Aluno $id - Disciplina: $materia";
+});
+URL de exemplo:
+Plain Text
+/aluno/3/disciplina/pw
+
+
+http://127.0.0.1
+http://localhost
+
+Seeders
+Route::get('/saudacao/{nome?}', function ($nome = 'Visitante') {
+ return "Olá, " . $nome;
+});
+O ? torna o parâmetro opcional:
+• /saudacao/Ana → Olá, Ana
+• /saudacao → Olá, Visitante
+
+
+Criar um Seeder
+Bash
+php artisan make:seeder FornecedorSeeder
+O arquivo será criado em:
+Plain Text
+database/seeders/FornecedorSeeder.php
+
+Seeders são responsáveis por semear o banco de dados da aplicação com configurações
+padrões ou dados de teste.
+
+<?php
+namespace Database\Seeders;
+use Illuminate\Database\Seeder;
+use App\Models\Fornecedor;
+class FornecedorSeeder extends Seeder
+{
+ public function run( ): void
+ {
+ Fornecedor::create([
+ 'nome' => 'Fornecedor 1',
+ 'email' => 'fornecedor@email.com',
+ ]);
+ }
+}
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
